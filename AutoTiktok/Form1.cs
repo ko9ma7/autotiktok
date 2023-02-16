@@ -1,24 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Net;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace AutoTiktok
 {
     public partial class Form1 : Form
     {
+        [DllImport("user32.dll")]
+        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+        [DllImport("user32.dll")]
+        public static extern bool EnumChildWindows(IntPtr hWndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);
+        [DllImport("user32.dll")]
+        public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+        [DllImport("user32.dll")]
+        public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
 
+        public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+
+        private const int VK_L = 0x4C;
+        private const int VK_CONTROL = 0x11;
+        private const int WM_KEYDOWN = 0x100;
+        private const int WM_KEYUP = 0x101;
         public Form1()
         {
             InitializeComponent();
@@ -28,63 +36,14 @@ namespace AutoTiktok
         {
 
         }
-        //Thay đổi IP cho DCOM
-        public static string ResetDCOM(string modemUrl, string username, string password)
-        {
-            var client = new RestClient(modemUrl);
-            client.Authenticator = new HttpBasicAuthenticator(username, password);
-
-            var request = new RestRequest("api/dialup/mobiledata", Method.POST);
-            request.AddParameter("xml", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><request><Control>1</Control></request>");
-
-            IRestResponse response = client.Execute(request);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                // handle error
-                return "Error: " + response.ErrorMessage;
-            }
-            else
-            {
-                return "IP address changed successfully";
-            }
-        }
-        //Chọn đường dẫn File chứa tài khoản mật khẩu tiktok
-        private void btn_acc_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-            openFileDialog1.Title = "Chọn tệp tin";
-            openFileDialog1.Filter = "Tệp tin văn bản (*.txt)|*.txt|Tất cả các tệp tin (*.*)|*.*";
-            openFileDialog1.InitialDirectory = "C:\\";
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txtLinkAcc.Text = openFileDialog1.FileName;
-            }
-        }
-
-        private void btn_ConfigB_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-            openFileDialog1.Title = "Chọn tệp tin";
-            openFileDialog1.Filter = "Tệp tin văn bản (*.txt)|*.txt|Tất cả các tệp tin (*.*)|*.*";
-            openFileDialog1.InitialDirectory = "C:\\";
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txtConfig.Text = openFileDialog1.FileName;
-            }
-        }
-
+       
         private void btn_Start_Click(object sender, EventArgs e)
         {
             int count = int.Parse(txtWinCount.Text);
             for (int i = 0; i < count; i++)
             {
                 Process ldProcess = new Process();
-                ldProcess.StartInfo.FileName = "C:\\Program Files\\LDPlayer\\LDPlayer4.0\\LDPlayer4.0\\dnplayer.exe";
+                ldProcess.StartInfo.FileName = "D:\\LDPlayer\\dnplayer.exe"; 
                 ldProcess.Start();
 
                 Thread.Sleep(5000);
@@ -104,7 +63,7 @@ namespace AutoTiktok
                 {
                     var childTitle = new StringBuilder(256);
                     GetWindowText(handle, childTitle, childTitle.Capacity);
-                    if (childTitle.ToString() == "Chrome")
+                    if (childTitle.ToString() == "Tiktok Lite")
                     {
                         chromeCount++;
                         PostMessage(handle, WM_KEYDOWN, VK_CONTROL, 0);
@@ -117,7 +76,7 @@ namespace AutoTiktok
 
                 if (chromeCount == 0)
                 {
-                    MessageBox.Show("Cannot find Chrome window.");
+                    MessageBox.Show("Cannot find Tiktok Lite window.");
                     return;
                 }
             }

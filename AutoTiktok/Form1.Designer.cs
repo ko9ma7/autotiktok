@@ -63,7 +63,6 @@
             this.btn_acc.TabIndex = 2;
             this.btn_acc.Text = "Brower";
             this.btn_acc.UseVisualStyleBackColor = true;
-            this.btn_acc.Click += new System.EventHandler(this.btn_acc_Click);
             // 
             // btn_ConfigB
             // 
@@ -73,7 +72,6 @@
             this.btn_ConfigB.TabIndex = 3;
             this.btn_ConfigB.Text = "Brower";
             this.btn_ConfigB.UseVisualStyleBackColor = true;
-            this.btn_ConfigB.Click += new System.EventHandler(this.btn_ConfigB_Click);
             // 
             // label1
             // 
