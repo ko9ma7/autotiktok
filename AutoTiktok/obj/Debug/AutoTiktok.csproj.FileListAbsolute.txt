@@ -1,7 +1,6 @@
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\AutoTiktok.exe.config
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\AutoTiktok.exe
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\AutoTiktok.pdb
-E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.csprojResolveAssemblyReference.cache
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.Form1.resources
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.Properties.Resources.resources
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.csproj.GenerateResource.Cache
@@ -13,3 +12,7 @@ E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\RestSharp.Serializers
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\Newtonsoft.Json.pdb
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\Newtonsoft.Json.xml
 E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\RestSharp.xml
+E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\selenium-manager\linux\selenium-manager
+E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\selenium-manager\macos\selenium-manager
+E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\selenium-manager\windows\selenium-manager.exe
+E:\1.Project\13.Autotiktok\AutoTiktok\AutoTiktok\bin\Debug\WebDriver.dll

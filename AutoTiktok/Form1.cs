@@ -10,11 +10,15 @@ using System.Windows.Forms;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Net;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System.Runtime.InteropServices;
 
 namespace AutoTiktok
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -71,6 +75,51 @@ namespace AutoTiktok
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtConfig.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void btn_Start_Click(object sender, EventArgs e)
+        {
+            int count = int.Parse(txtWinCount.Text);
+            for (int i = 0; i < count; i++)
+            {
+                Process ldProcess = new Process();
+                ldProcess.StartInfo.FileName = "C:\\Program Files\\LDPlayer\\LDPlayer4.0\\LDPlayer4.0\\dnplayer.exe";
+                ldProcess.Start();
+
+                Thread.Sleep(5000);
+
+                IntPtr hwnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, null, "LDPlayer");
+                if (hwnd == IntPtr.Zero)
+                {
+                    MessageBox.Show("Cannot find LDPlayer window.");
+                    return;
+                }
+
+                StringBuilder sb = new StringBuilder(256);
+                GetWindowText(hwnd, sb, sb.Capacity);
+
+                int chromeCount = 0;
+                EnumChildWindows(hwnd, (handle, param) =>
+                {
+                    var childTitle = new StringBuilder(256);
+                    GetWindowText(handle, childTitle, childTitle.Capacity);
+                    if (childTitle.ToString() == "Chrome")
+                    {
+                        chromeCount++;
+                        PostMessage(handle, WM_KEYDOWN, VK_CONTROL, 0);
+                        PostMessage(handle, WM_KEYDOWN, VK_L, 0);
+                        PostMessage(handle, WM_KEYUP, VK_L, 0);
+                        PostMessage(handle, WM_KEYUP, VK_CONTROL, 0);
+                    }
+                    return true;
+                }, IntPtr.Zero);
+
+                if (chromeCount == 0)
+                {
+                    MessageBox.Show("Cannot find Chrome window.");
+                    return;
+                }
             }
         }
     }
