@@ -7,26 +7,15 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+
 
 namespace AutoTiktok
 {
     public partial class Form1 : Form
     {
-        [DllImport("user32.dll")]
-        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
-        [DllImport("user32.dll")]
-        public static extern bool EnumChildWindows(IntPtr hWndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);
-        [DllImport("user32.dll")]
-        public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
-        [DllImport("user32.dll")]
-        public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
 
-        public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
-
-        private const int VK_L = 0x4C;
-        private const int VK_CONTROL = 0x11;
-        private const int WM_KEYDOWN = 0x100;
-        private const int WM_KEYUP = 0x101;
         public Form1()
         {
             InitializeComponent();
@@ -36,50 +25,33 @@ namespace AutoTiktok
         {
 
         }
-       
+
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            int count = int.Parse(txtWinCount.Text);
-            for (int i = 0; i < count; i++)
-            {
-                Process ldProcess = new Process();
-                ldProcess.StartInfo.FileName = "D:\\LDPlayer\\dnplayer.exe"; 
-                ldProcess.Start();
+            // Mở LDPlayer
+            string ldPlayerPath = @"D:\LDPlayer\dnplayer.exe";
+            Process ldPlayerProcess = Process.Start(ldPlayerPath);
 
-                Thread.Sleep(5000);
+            // Chờ LDPlayer khởi động
+            Thread.Sleep(5000);
 
-                IntPtr hwnd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, null, "LDPlayer");
-                if (hwnd == IntPtr.Zero)
-                {
-                    MessageBox.Show("Cannot find LDPlayer window.");
-                    return;
-                }
+            // Gửi lệnh adb để mở TikTok Lite
+            string adbPath = @"D:\LDPlayer\adb.exe";
+            ProcessStartInfo adbStartInfo = new ProcessStartInfo(adbPath, @"-s 127.0.0.1:21503 shell am start -n com.ss.android.ugc.trill/com.ss.android.ugc.trill.main.MainActivity");
+            Process adbProcess = Process.Start(adbStartInfo);
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("--disable-notifications"); // Tắt thông báo hiển thị trên trình duyệt
+            chromeOptions.AddArguments("--disable-infobars"); // Tắt thanh trạng thái trên trình duyệt
+            chromeOptions.AddArguments("--mute-audio"); // Tắt âm thanh trên trình duyệt
 
-                StringBuilder sb = new StringBuilder(256);
-                GetWindowText(hwnd, sb, sb.Capacity);
+            // Khởi tạo trình điều khiển Chrome để tự động điều khiển trình duyệt
+            var driver = new ChromeDriver(chromeOptions);
 
-                int chromeCount = 0;
-                EnumChildWindows(hwnd, (handle, param) =>
-                {
-                    var childTitle = new StringBuilder(256);
-                    GetWindowText(handle, childTitle, childTitle.Capacity);
-                    if (childTitle.ToString() == "Tiktok Lite")
-                    {
-                        chromeCount++;
-                        PostMessage(handle, WM_KEYDOWN, VK_CONTROL, 0);
-                        PostMessage(handle, WM_KEYDOWN, VK_L, 0);
-                        PostMessage(handle, WM_KEYUP, VK_L, 0);
-                        PostMessage(handle, WM_KEYUP, VK_CONTROL, 0);
-                    }
-                    return true;
-                }, IntPtr.Zero);
+            // Mở trang web https://www.tiktok.com/@lycos.white
+            driver.Navigate().GoToUrl("https://www.tiktok.com/@lycos.white");
 
-                if (chromeCount == 0)
-                {
-                    MessageBox.Show("Cannot find Tiktok Lite window.");
-                    return;
-                }
-            }
+            // Đóng trình duyệt
+            driver.Quit();
         }
     }
 }
