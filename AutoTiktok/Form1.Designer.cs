@@ -100,6 +100,7 @@
             this.txtWinCount.Name = "txtWinCount";
             this.txtWinCount.Size = new System.Drawing.Size(100, 20);
             this.txtWinCount.TabIndex = 6;
+            this.txtWinCount.Text = "1";
             // 
             // label3
             // 

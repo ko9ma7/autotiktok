@@ -110,6 +110,22 @@ namespace AutoTiktok
                 process.Kill();
             }
         }
+        //Mở link băng tiktok
+        public static void OpenTikTokProfile(string url)
+        {
+            var options = new ChromeOptions();
+            options.AddArguments("start-maximized");
+            options.AddArgument("--disable-extensions");
+            options.AddArgument("--disable-notifications");
+
+            using (var driver = new ChromeDriver(options))
+            {
+                driver.Navigate().GoToUrl("https://www.tiktok.com/login/");
+                // Điền thông tin đăng nhập vào đây
+
+                driver.Navigate().GoToUrl(url);
+            }
+        }
         private void btn_Start_Click(object sender, EventArgs e)
         {
             OpenLD();
@@ -122,7 +138,8 @@ namespace AutoTiktok
 
         private void btn_sortLD_Click(object sender, EventArgs e)
         {
-            sortLDWindows();
+            // sortLDWindows();
+            OpenTikTokProfile("https://www.tiktok.com/@nguyenhanh4146");
         }
 
         private void btn_Close_Click(object sender, EventArgs e)
