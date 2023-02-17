@@ -39,6 +39,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtDelay = new System.Windows.Forms.TextBox();
             this.btn_Start = new System.Windows.Forms.Button();
+            this.btn_tiktok = new System.Windows.Forms.Button();
+            this.btn_sortLD = new System.Windows.Forms.Button();
+            this.btn_Close = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtConfig
@@ -125,7 +128,7 @@
             // 
             // btn_Start
             // 
-            this.btn_Start.Location = new System.Drawing.Point(1067, 657);
+            this.btn_Start.Location = new System.Drawing.Point(1024, 657);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(75, 56);
             this.btn_Start.TabIndex = 10;
@@ -133,11 +136,44 @@
             this.btn_Start.UseVisualStyleBackColor = true;
             this.btn_Start.Click += new System.EventHandler(this.btn_Start_Click);
             // 
+            // btn_tiktok
+            // 
+            this.btn_tiktok.Location = new System.Drawing.Point(1105, 656);
+            this.btn_tiktok.Name = "btn_tiktok";
+            this.btn_tiktok.Size = new System.Drawing.Size(75, 57);
+            this.btn_tiktok.TabIndex = 11;
+            this.btn_tiktok.Text = "Tiktok";
+            this.btn_tiktok.UseVisualStyleBackColor = true;
+            this.btn_tiktok.Click += new System.EventHandler(this.btn_tiktok_Click);
+            // 
+            // btn_sortLD
+            // 
+            this.btn_sortLD.Location = new System.Drawing.Point(1186, 656);
+            this.btn_sortLD.Name = "btn_sortLD";
+            this.btn_sortLD.Size = new System.Drawing.Size(75, 57);
+            this.btn_sortLD.TabIndex = 12;
+            this.btn_sortLD.Text = "Sort";
+            this.btn_sortLD.UseVisualStyleBackColor = true;
+            this.btn_sortLD.Click += new System.EventHandler(this.btn_sortLD_Click);
+            // 
+            // btn_Close
+            // 
+            this.btn_Close.Location = new System.Drawing.Point(1267, 656);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(75, 57);
+            this.btn_Close.TabIndex = 13;
+            this.btn_Close.Text = "Close all";
+            this.btn_Close.UseVisualStyleBackColor = true;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.btn_Close);
+            this.Controls.Add(this.btn_sortLD);
+            this.Controls.Add(this.btn_tiktok);
             this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtDelay);
@@ -170,6 +206,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDelay;
         private System.Windows.Forms.Button btn_Start;
+        private System.Windows.Forms.Button btn_tiktok;
+        private System.Windows.Forms.Button btn_sortLD;
+        private System.Windows.Forms.Button btn_Close;
     }
 }
 
