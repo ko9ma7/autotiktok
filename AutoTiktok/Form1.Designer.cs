@@ -42,6 +42,10 @@
             this.btn_tiktok = new System.Windows.Forms.Button();
             this.btn_sortLD = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
+            this.txtTikTokID = new System.Windows.Forms.TextBox();
+            this.txtTikTokPass = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblttp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtConfig
@@ -167,11 +171,47 @@
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
+            // txtTikTokID
+            // 
+            this.txtTikTokID.Location = new System.Drawing.Point(101, 56);
+            this.txtTikTokID.Name = "txtTikTokID";
+            this.txtTikTokID.Size = new System.Drawing.Size(100, 20);
+            this.txtTikTokID.TabIndex = 14;
+            // 
+            // txtTikTokPass
+            // 
+            this.txtTikTokPass.Location = new System.Drawing.Point(101, 91);
+            this.txtTikTokPass.Name = "txtTikTokPass";
+            this.txtTikTokPass.Size = new System.Drawing.Size(100, 20);
+            this.txtTikTokPass.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(33, 59);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "TikTokID";
+            // 
+            // lblttp
+            // 
+            this.lblttp.AutoSize = true;
+            this.lblttp.Location = new System.Drawing.Point(33, 94);
+            this.lblttp.Name = "lblttp";
+            this.lblttp.Size = new System.Drawing.Size(64, 13);
+            this.lblttp.TabIndex = 17;
+            this.lblttp.Text = "TikTokPass";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.lblttp);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtTikTokPass);
+            this.Controls.Add(this.txtTikTokID);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.btn_sortLD);
             this.Controls.Add(this.btn_tiktok);
@@ -210,6 +250,10 @@
         private System.Windows.Forms.Button btn_tiktok;
         private System.Windows.Forms.Button btn_sortLD;
         private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.TextBox txtTikTokID;
+        private System.Windows.Forms.TextBox txtTikTokPass;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblttp;
     }
 }
 
