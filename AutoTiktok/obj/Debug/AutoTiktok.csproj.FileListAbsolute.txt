@@ -35,3 +35,4 @@ C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.Form1.
 C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.Properties.Resources.resources
 C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\bin\Debug\KAutoHelper.dll

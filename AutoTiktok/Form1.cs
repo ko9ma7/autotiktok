@@ -11,6 +11,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using KAutoHelper;
 
 
 namespace AutoTiktok
@@ -22,7 +23,6 @@ namespace AutoTiktok
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -126,6 +126,68 @@ namespace AutoTiktok
                 driver.Navigate().GoToUrl(url);
             }
         }
+        //Đăng ký tai khoan băng email
+
+        private void RegisterTikTokAccount()
+        {
+            // Launch TikTok app
+            //ADBHelper.ExecuteAdbCommand
+            ADBHelper.ExecuteCMD("shell am start -n com.ss.android.ugc.trill/com.ss.android.ugc.aweme.splash.SplashActivity");
+
+            // Wait for TikTok app to launch
+            Thread.Sleep(5000);
+
+            // Tap on register button
+            ADBHelper.Tap("SABO_LD_PLAYER", 1050, 620);
+
+            // Wait for register page to load
+            Thread.Sleep(5000);
+
+            // Tap on phone number button
+            ADBHelper.Tap("SABO_LD_PLAYER", 530, 960);
+
+            // Wait for phone number page to load
+            Thread.Sleep(5000);
+
+            // Tap on input box for phone number
+            ADBHelper.Tap("SABO_LD_PLAYER", 470, 470);
+
+            // Input phone number
+            KAutoHelper.ADBHelper.InputText("Emulator-5554","0987654321");
+
+            // Tap on submit button
+            ADBHelper.Tap("SABO_LD_PLAYER", 530, 680);
+
+            // Wait for verification page to load
+            Thread.Sleep(5000);
+
+            // Tap on input box for verification code
+            ADBHelper.Tap("SABO_LD_PLAYER", 480, 515);
+
+            // Input verification code
+            KAutoHelper.ADBHelper.InputText("Emulator-5554", "0987654321");
+
+            // Tap on submit button
+            ADBHelper.Tap("SABO_LD_PLAYER", 530, 680);
+
+            // Wait for profile setup page to load
+            Thread.Sleep(5000);
+
+            // Tap on username input box
+            ADBHelper.Tap("SABO_LD_PLAYER", 510, 425);
+
+            // Input username
+            KAutoHelper.ADBHelper.InputText("Emulator-5554", "0987654321");
+
+            // Tap on password input box
+            ADBHelper.Tap("SABO_LD_PLAYER", 510, 540);
+
+            // Input password
+            KAutoHelper.ADBHelper.InputText("Emulator-5554", "0987654321");
+
+            // Tap on submit button
+            ADBHelper.Tap("SABO_LD_PLAYER", 530, 680);
+        }
         private void btn_Start_Click(object sender, EventArgs e)
         {
             OpenLD();
@@ -139,7 +201,7 @@ namespace AutoTiktok
         private void btn_sortLD_Click(object sender, EventArgs e)
         {
             // sortLDWindows();
-            OpenTikTokProfile("https://www.tiktok.com/@nguyenhanh4146");
+            RegisterTikTokAccount();
         }
 
         private void btn_Close_Click(object sender, EventArgs e)
