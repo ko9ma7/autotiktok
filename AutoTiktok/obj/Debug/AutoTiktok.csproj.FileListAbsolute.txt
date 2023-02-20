@@ -36,3 +36,6 @@ C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.Proper
 C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\obj\Debug\AutoTiktok.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\bin\Debug\KAutoHelper.dll
+C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\bin\Debug\Emgu.CV.World.dll
+C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\bin\Debug\KAutoHelper.pdb
+C:\Users\Administrator\Desktop\AutoTiktok\AutoTiktok\bin\Debug\Emgu.CV.World.xml
