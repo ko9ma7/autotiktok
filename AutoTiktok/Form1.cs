@@ -111,25 +111,26 @@ namespace AutoTiktok
                 process.Kill();
             }
         }
-        //Mở link băng tiktok
-        public static void OpenTikTokProfile(string url)
+        //Quét các cửa sổ LD đang bật
+        private void ScanLDplayerRun()
         {
-            var options = new ChromeOptions();
-            options.AddArguments("start-maximized");
-            options.AddArgument("--disable-extensions");
-            options.AddArgument("--disable-notifications");
-
-            using (var driver = new ChromeDriver(options))
+            string deviceID = null;
+            var listDevice = KAutoHelper.ADBHelper.GetDevices();
+            if (listDevice != null && listDevice.Count > 0)
             {
-                driver.Navigate().GoToUrl("https://www.tiktok.com/login/");
-                // Điền thông tin đăng nhập vào đây
-
-                driver.Navigate().GoToUrl(url);
+                for (int i = 0; i < listDevice.Count; i++)
+                {
+                    deviceID += listDevice[i] +"\n";
+                    
+                }
+                MessageBox.Show(deviceID);
             }
         }
-        //Đăng nhâp tiktok
+        //Đăng nhâp tiktok bang tai khoan email
+        private void LoginTiktokEmail()
+        {
 
-       
+        }
         private void btn_Start_Click(object sender, EventArgs e)
         {
             OpenLD();
@@ -142,13 +143,7 @@ namespace AutoTiktok
 
         private void btn_sortLD_Click(object sender, EventArgs e)
         {
-            string deviceID = null;
-            var listDevice = KAutoHelper.ADBHelper.GetDevices();
-            if (listDevice != null && listDevice.Count > 0)
-            {
-                deviceID = listDevice[0];
-                MessageBox.Show(deviceID);
-            }
+            ScanLDplayerRun();
         }
 
         private void btn_Close_Click(object sender, EventArgs e)
