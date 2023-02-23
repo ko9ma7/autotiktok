@@ -46,6 +46,7 @@
             this.txtTikTokPass = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblttp = new System.Windows.Forms.Label();
+            this.btn_ChangeIP = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtConfig
@@ -203,11 +204,22 @@
             this.lblttp.TabIndex = 17;
             this.lblttp.Text = "TikTokPass";
             // 
+            // btn_ChangeIP
+            // 
+            this.btn_ChangeIP.Location = new System.Drawing.Point(36, 212);
+            this.btn_ChangeIP.Name = "btn_ChangeIP";
+            this.btn_ChangeIP.Size = new System.Drawing.Size(75, 56);
+            this.btn_ChangeIP.TabIndex = 18;
+            this.btn_ChangeIP.Text = "Change IP";
+            this.btn_ChangeIP.UseVisualStyleBackColor = true;
+            this.btn_ChangeIP.Click += new System.EventHandler(this.btn_ChangeIP_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 487);
+            this.Controls.Add(this.btn_ChangeIP);
             this.Controls.Add(this.lblttp);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTikTokPass);
@@ -254,6 +266,7 @@
         private System.Windows.Forms.TextBox txtTikTokPass;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblttp;
+        private System.Windows.Forms.Button btn_ChangeIP;
     }
 }
 

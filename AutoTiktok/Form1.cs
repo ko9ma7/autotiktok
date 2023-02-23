@@ -10,8 +10,7 @@ using System.Windows.Forms;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Drawing;
+using KAutoHelper;
 
 
 namespace AutoTiktok
@@ -74,31 +73,6 @@ namespace AutoTiktok
                 Thread.Sleep(1000);
             }
         }
-        //Săp xêp cac cưa sổ LDplayer
-        private void sortLDWindows()
-        {
-            List<string> windowList = new List<string>();
-            Process process = new Process();
-            process.StartInfo.FileName = "cmd.exe";
-            process.StartInfo.Arguments = "/c adb.exe shell dumpsys window windows | findstr /E \"SurfaceView\"";
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.Start();
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string line = process.StandardOutput.ReadLine();
-                windowList.Add(line);
-            }
-            process.WaitForExit();
-
-            windowList.Sort();
-
-            for (int i = 0; i < windowList.Count; i++)
-            {
-                int index = int.Parse(Regex.Match(windowList[i], @"init=(\d+),").Groups[1].Value);
-                Process.Start("cmd.exe", $"/c \"D:\\LDPlayer\\LDPlayer4.0\\dnconsole.exe move --index {index} --position {i}\"");
-            }
-        }
         //Đong tât cả cưa sổ LDplayer đang mở
         private void CloseLDPlayers()
         {
@@ -131,6 +105,36 @@ namespace AutoTiktok
         {
 
         }
+        //Restart DCom hilink
+        public void RestartDevice(string deviceIp)
+        {
+            var client = new RestClient($"http://{deviceIp}/api/device/control");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.AddParameter("undefined", "1", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+        }
+        //Mở chrome tren ldplayer
+        void OpenChromeInLDPlayer()
+        {
+            string teststr = "";
+            List<string> DeviceID = ADBHelper.GetDevices();
+            foreach (string device in DeviceID)
+            {
+                teststr += device + "\n";
+                ADBHelper.ExecuteCMD($"adb -s "+device+" shell am start -n com.android.chrome/com.google.android.apps.chrome.Main");
+            }
+            MessageBox.Show(teststr);
+            
+        }
+        //Tự động đăng ký ních hotmail bằng autoclick
+        private void Reg_hotmail(string deviceID)
+        {
+            ADBHelper.Tap(deviceID, 236, 76);
+            ADBHelper.InputText(deviceID, "https://outlook.live.com/");
+            ADBHelper.InputText(deviceID, "\n");
+        }
         private void btn_Start_Click(object sender, EventArgs e)
         {
             OpenLD();
@@ -143,12 +147,17 @@ namespace AutoTiktok
 
         private void btn_sortLD_Click(object sender, EventArgs e)
         {
-            ScanLDplayerRun();
+            Reg_hotmail("emulator-5556");
         }
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
             CloseLDPlayers();
+        }
+
+        private void btn_ChangeIP_Click(object sender, EventArgs e)
+        {
+            OpenChromeInLDPlayer();
         }
     }
 }
